@@ -7,6 +7,8 @@ from sklearn.model_selection import train_test_split
 from dataclasses import dataclass
 from src.components.data_tranformation import DataTransformation
 from src.components.data_tranformation import DataTransformationConfig
+from src.components.model_trainer import ModelTrainer
+from src.components.model_trainer import ModelTrainerConfig
 
 # run the whole file usingh the Run from project root using -m command 
 # python -m src.components.data_ingestion
@@ -44,7 +46,10 @@ if __name__ == "__main__":
     train_data,test_data=obj.initiate_data_ingestion()
     
     dataTransformation= DataTransformation()
-    dataTransformation.initiate_data_transformation(train_data,test_data)
+    train_arr, test_arr,_= dataTransformation.initiate_data_transformation(train_data,test_data)
+
+    modelTrainer=ModelTrainer()
+    print(modelTrainer.initiate_model_trainer(train_arr,test_arr))
     
 
 
